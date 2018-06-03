@@ -4,6 +4,7 @@ import snapEdgesModule from './snapEdges';
 import restrictModule from './restrict';
 import restrictEdgesModule from './restrictEdges';
 import restrictSizeModule from './restrictSize';
+import aspectRatioModule from './aspectRatio';
 
 export const snap = makeModifier('snap', snapModule);
 export const snapSize = makeModifier('snapSize', snapSizeModule);
@@ -11,6 +12,7 @@ export const snapEdges = makeModifier('snapEdges', snapEdgesModule);
 export const restrict = makeModifier('restrict', restrictModule);
 export const restrictEdges = makeModifier('restrictEdges', restrictEdgesModule);
 export const restrictSize = makeModifier('restrictSize', restrictSizeModule);
+export const aspectRatio = makeModifier('aspectRatio', aspectRatioModule);
 
 function makeModifier (name, module) {
   const methods = { start: module.start, set: module.set };
