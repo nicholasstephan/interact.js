@@ -65,7 +65,7 @@ function start ({ interaction, phase }, pageCoords) {
   const modifierList = getModifierList(interaction);
   const statuses = prepareStatuses(modifierList);
 
-  const rect = extend({}, interactable.getRect(element));
+  const rect = extend({}, interaction.rect);
 
   if (!('width'  in rect)) { rect.width  = rect.right  - rect.left; }
   if (!('height' in rect)) { rect.height = rect.bottom - rect.top ; }
