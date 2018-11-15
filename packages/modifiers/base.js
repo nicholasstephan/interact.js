@@ -285,7 +285,7 @@ function getModifierList (interaction, registeredModifiers) {
     });
   }
 
-  return ['snap', 'snapSize', 'snapEdges', 'restrict', 'restrictEdges', 'restrictSize']
+  return ['snap', 'snapSize', 'snapEdges', 'restrict', 'restrictEdges', 'restrictSize', 'restrictCircle']
     .map(type => {
       const options = actionOptions[type];
 
