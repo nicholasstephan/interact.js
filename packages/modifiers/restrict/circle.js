@@ -22,23 +22,28 @@ function start ({ rect, startOffset, state }) {
 
 function set ({ coords, interaction, state }) {
   const { options, offset } = state;
-
+  
   const restriction = getRestrictionRect(options.restriction, interaction, coords);
-
+  
   if (!restriction) { return state; }
-
+  
   const rect = restriction;
 
-  // object is assumed to have
-  // x, y, width, height or
-  // left, top, right, bottom
-  if ('x' in restriction && 'y' in restriction) {
-    coords.x = Math.max(Math.min(rect.x + rect.width  - offset.right , coords.x), rect.x + offset.left);
-    coords.y = Math.max(Math.min(rect.y + rect.height - offset.bottom, coords.y), rect.y + offset.top );
-  }
-  else {
-    coords.x = Math.max(Math.min(rect.right  - offset.right , coords.x), rect.left + offset.left);
-    coords.y = Math.max(Math.min(rect.bottom - offset.bottom, coords.y), rect.top  + offset.top );
+  // console.log('\nrect:', rect);
+  // console.log('x init:', coords.x, ' y init:', coords.y);
+
+  // center of circle: (X, Y)
+  const X = rect.width / 2 + rect.left;
+  const Y = rect.height / 2 + rect.top;
+  // console.log('X:', X, ' Y:', Y);
+
+  const R = Math.min(rect.width / 2, rect.height / 2);
+  const r = Math.sqrt(Math.abs(coords.x - X) ** 2 + Math.abs(coords.y - Y) ** 2);
+  // console.log('R:', R, ' r:', r);
+
+  if (r > R) {
+    coords.x = (coords.x - X) * R / r + X;
+    coords.y = (coords.y - Y) * R / r + Y;
   }
 }
 
