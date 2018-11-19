@@ -29,17 +29,15 @@ function set ({ coords, interaction, state }) {
   
   const rect = restriction;
 
-  // console.log('\nrect:', rect);
-  // console.log('x init:', coords.x, ' y init:', coords.y);
-
-  // center of circle: (X, Y)
+  // (X, Y): center of circle
   const X = rect.width / 2 + rect.left;
   const Y = rect.height / 2 + rect.top;
-  // console.log('X:', X, ' Y:', Y);
 
+  // R: radius of circle
   const R = Math.min(rect.width / 2, rect.height / 2);
+
+  // r : distance from (coords.x, coords.y) to R
   const r = Math.sqrt(Math.abs(coords.x - X) ** 2 + Math.abs(coords.y - Y) ** 2);
-  // console.log('R:', R, ' r:', r);
 
   if (r > R) {
     coords.x = (coords.x - X) * R / r + X;
